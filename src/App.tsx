@@ -91,7 +91,7 @@ const Box = styled(motion.div)`
   height: 200px;
   background: #fff;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 
 function App() {
@@ -99,7 +99,11 @@ function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <Box animate={{ borderRadius: "100px" }} />
+        {/*<Box transition={{ duration: 3 }} animate={{ borderRadius: "100px" }} />*/}
+        <Box
+          transition={{ type: "spring", delay: 1 }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1, rotateZ: 360 }} />
       </Wrapper>
     </>
   );
