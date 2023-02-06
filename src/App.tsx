@@ -88,29 +88,26 @@ const Wrapper = styled.div`
 
 const Box = styled(motion.div)`
   display: grid;
-  grid-template-columns:repeat(2, 1fr);
-  width: 200px;
-  height: 200px;
-  background: rgba(255,255,255,0.1);
+  grid-template-columns: repeat(2, 1fr);
+  width: 180px;
+  height: 180px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 50px;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.15);
 `;
 const Circle = styled(motion.div)`
   place-self: center;
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
-`
-const myVars = {
-  start : { scale: 0 },
-  end: { scale: 1, rotateZ: 360, transition: { type: "spring", delay: 1 } }
-}
+`;
+
 const boxVars = {
   start: {
     opacity: 0,
-    scale: 0.5
+    scale: 0.5,
   },
   end: {
     opacity: 1,
@@ -118,33 +115,41 @@ const boxVars = {
     transition: {
       type: "spring",
       duration: 0.5,
-      bounce: 0.5
+      bounce: 0.5,
+      delayChildren: 0.5,
     },
-  }
-}
+  },
+};
 
 const circleVars = {
-  start :{
+  start: {
     opacity: 0,
-},
+  },
   end: {
     opacity: 1,
-    transition:{
-
-    }
-  }
-}
+    transition: {
+      delay: 0.5,
+    },
+  },
+};
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <Box variants={boxVars} initial ="start" animate="end">
-          <Circle variants={circleVars}/>
-          <Circle variants={circleVars}/>
-          <Circle variants={circleVars}/>
-          <Circle variants={circleVars}/>
+        {/*부모 개체에 variants 가 지정되면 자식요소에도 같은 베리언트가 적용된다*/}
+        <Box
+          variants={boxVars}
+          initial="start"
+          animate="end"
+          whileHover={{ scale: 1.1, transition: { duration: 0.25 } }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Circle variants={circleVars} />
+          <Circle variants={circleVars} />
+          <Circle variants={circleVars} />
+          <Circle variants={circleVars} />
         </Box>
       </Wrapper>
     </>
